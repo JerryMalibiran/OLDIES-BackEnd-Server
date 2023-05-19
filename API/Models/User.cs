@@ -1,20 +1,23 @@
-﻿namespace API.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace API.Models
 {
     public class User
     {
 
-        public int ID { get; set; }
-        public int DiscordID { get; set; }
+        public int Id { get; set; }
+        public int DiscordId { get; set; }
         public int Experience { get; set; }
+        
+        [Precision(18,2)]
         public decimal Balance { get; set; }
 
 
-        public User(int id, int discordID)
+        public User(int discordId)
         {
-            this.ID = id;
-            this.DiscordID = discordID;
-            this.Experience = 0;
-            this.Balance = 0;
+            DiscordId = discordId;
+            Experience = 0;
+            Balance = 0;
         }
 
         public void AddBalance(int value) {

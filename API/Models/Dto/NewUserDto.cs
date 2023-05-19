@@ -1,7 +1,7 @@
-﻿namespace API.Models.Dto
+﻿namespace API.Models.DTO
 {
-    public class NewUserDto
+    public class NewUserDTO
     {
-        public int DiscordID { get; set; }
+        public int DiscordId { get; set; }
     }
 }

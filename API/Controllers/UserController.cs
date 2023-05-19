@@ -1,20 +1,20 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using API.Models;
-using API.Models.Dto;
+using API.Models.DTO;
 using API.Services.UserService;
 
 namespace API.Controllers
 {
     [Route("oldies/api/v1/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UserController : ControllerBase
     {
 
-        private readonly ILogger<UsersController> _logger;
+        private readonly ILogger<UserController> _logger;
         private readonly IUserService _userService;
 
-        public UsersController(ILogger<UsersController> logger, IUserService userService)
+        public UserController(ILogger<UserController> logger, IUserService userService)
         {
             _logger = logger;
             _userService = userService;
@@ -27,19 +27,19 @@ namespace API.Controllers
             return StatusCode(response.Code, response);
         }
 
-        [HttpGet("{discordID:int}", Name = "GetUser")]
+        [HttpGet("{discordId:int}", Name = "GetUser")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<ServiceResponse<User>>> GetUser(int discordID)
+        public async Task<ActionResult<ServiceResponse<User>>> GetUser(int discordId)
         {
-            ServiceResponse<User> response = await _userService.GetByDiscordID(discordID);
+            ServiceResponse<User> response = await _userService.GetByDiscordId(discordId);
             return StatusCode(response.Code, response);
         }
 
         [HttpPost(Name = "AddUser")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
-        public async Task<ActionResult<ServiceResponse<User>>> AddUser([FromBody]NewUserDto newUser)
+        public async Task<ActionResult<ServiceResponse<User>>> AddUser([FromBody]NewUserDTO newUser)
         {
             ServiceResponse<User> response = await _userService.Add(newUser);
             return StatusCode(response.Code, response);
