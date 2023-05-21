@@ -23,7 +23,7 @@ namespace API.Controllers
 
         [HttpGet(Name = "GetUsers")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IResponse>> GetUsers() {
+        public async Task<IActionResult> GetUsers() {
             IResponse response = await _userService.GetAll();
             return StatusCode(response.Code, response);
         }
@@ -31,7 +31,7 @@ namespace API.Controllers
         [HttpGet("{discordId:int}", Name = "GetUser")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<IResponse>> GetUser(int discordId)
+        public async Task<IActionResult> GetUser(int discordId)
         {
             IResponse response = await _userService.GetByDiscordId(discordId);
             return StatusCode(response.Code, response);
@@ -40,7 +40,7 @@ namespace API.Controllers
         [HttpPost(Name = "AddUser")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
-        public async Task<ActionResult<IResponse>> AddUser([FromBody]NewUserDTO newUser)
+        public async Task<IActionResult> AddUser([FromBody]NewUserDTO newUser)
         {
             IResponse response = await _userService.Add(newUser);
             return StatusCode(response.Code, response);
