@@ -48,7 +48,7 @@ namespace API.Services.UserService
         {
             IEnumerable<UserDTO> users = _mapper.Map<List<UserDTO>>(await _context.Users.ToListAsync());
 
-            IDataResponse<IEnumerable<UserDTO>> response = new DataResponse<IEnumerable<UserDTO>>(users, 200, "Fetched all existing users.");
+            IDataResponse<IEnumerable<UserDTO>> response = new DataResponse<IEnumerable<UserDTO>>(users, StatusCodes.Status200OK, "Fetched all existing users.");
             return response;
         }
 
