@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using API.Models;
 using API.Models.DTO;
 using API.Services.UserService;
 using System.Collections;
+using API.Models.Response;
 
 namespace API.Controllers
 {
@@ -23,26 +23,26 @@ namespace API.Controllers
 
         [HttpGet(Name = "GetUsers")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<ServiceResponse<IEnumerable<UserDTO>>>> GetUsers() {
-            ServiceResponse<IEnumerable<UserDTO>> response = await _userService.GetAll();
+        public async Task<ActionResult<IResponse>> GetUsers() {
+            IResponse response = await _userService.GetAll();
             return StatusCode(response.Code, response);
         }
 
         [HttpGet("{discordId:int}", Name = "GetUser")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<ServiceResponse<UserDTO>>> GetUser(int discordId)
+        public async Task<ActionResult<IResponse>> GetUser(int discordId)
         {
-            ServiceResponse<UserDTO> response = await _userService.GetByDiscordId(discordId);
+            IResponse response = await _userService.GetByDiscordId(discordId);
             return StatusCode(response.Code, response);
         }
 
         [HttpPost(Name = "AddUser")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
-        public async Task<ActionResult<ServiceResponse<UserDTO>>> AddUser([FromBody]NewUserDTO newUser)
+        public async Task<ActionResult<IResponse>> AddUser([FromBody]NewUserDTO newUser)
         {
-            ServiceResponse<UserDTO> response = await _userService.Add(newUser);
+            IResponse response = await _userService.Add(newUser);
             return StatusCode(response.Code, response);
         }
        
