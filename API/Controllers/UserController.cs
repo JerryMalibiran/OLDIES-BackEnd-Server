@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using API.Models;
 using API.Models.DTO;
 using API.Services.UserService;
+using System.Collections;
 
 namespace API.Controllers
 {
@@ -22,8 +23,8 @@ namespace API.Controllers
 
         [HttpGet(Name = "GetUsers")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<ServiceResponse<List<UserDTO>>>> GetUsers() {
-            ServiceResponse<List<UserDTO>> response = await _userService.GetAll();
+        public async Task<ActionResult<ServiceResponse<IEnumerable<UserDTO>>>> GetUsers() {
+            ServiceResponse<IEnumerable<UserDTO>> response = await _userService.GetAll();
             return StatusCode(response.Code, response);
         }
 

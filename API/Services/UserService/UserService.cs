@@ -42,11 +42,11 @@ namespace API.Services.UserService
             return serviceResponse;
         }
 
-        public async Task<ServiceResponse<List<UserDTO>>> GetAll()
+        public async Task<ServiceResponse<IEnumerable<UserDTO>>> GetAll()
         {
             List<UserDTO> users = _mapper.Map<List<UserDTO>>(await _context.Users.ToListAsync());
 
-            ServiceResponse<List<UserDTO>> serviceResponse = new(users, 200, "Fetched all existing users.");
+            ServiceResponse<IEnumerable<UserDTO>> serviceResponse = new(users, 200, "Fetched all existing users.");
             return serviceResponse;
         }
 
