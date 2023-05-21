@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API.Migrations
 {
-    [DbContext(typeof(UserContext))]
+    [DbContext(typeof(UserDbContext))]
     [Migration("20230519145445_InitialCreate")]
     partial class InitialCreate
     {

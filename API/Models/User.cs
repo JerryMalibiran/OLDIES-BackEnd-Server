@@ -12,14 +12,6 @@ namespace API.Models
         [Precision(18,2)]
         public decimal Balance { get; set; }
 
-
-        public User(int discordId)
-        {
-            DiscordId = discordId;
-            Experience = 0;
-            Balance = 0;
-        }
-
         public void AddBalance(int value) {
             Balance += value;
         }

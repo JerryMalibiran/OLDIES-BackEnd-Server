@@ -22,26 +22,26 @@ namespace API.Controllers
 
         [HttpGet(Name = "GetUsers")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<ServiceResponse<List<User>>>> GetUsers() {
-            ServiceResponse<List<User>> response = await _userService.GetAll();
+        public async Task<ActionResult<ServiceResponse<List<UserDTO>>>> GetUsers() {
+            ServiceResponse<List<UserDTO>> response = await _userService.GetAll();
             return StatusCode(response.Code, response);
         }
 
         [HttpGet("{discordId:int}", Name = "GetUser")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<ServiceResponse<User>>> GetUser(int discordId)
+        public async Task<ActionResult<ServiceResponse<UserDTO>>> GetUser(int discordId)
         {
-            ServiceResponse<User> response = await _userService.GetByDiscordId(discordId);
+            ServiceResponse<UserDTO> response = await _userService.GetByDiscordId(discordId);
             return StatusCode(response.Code, response);
         }
 
         [HttpPost(Name = "AddUser")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
-        public async Task<ActionResult<ServiceResponse<User>>> AddUser([FromBody]NewUserDTO newUser)
+        public async Task<ActionResult<ServiceResponse<UserDTO>>> AddUser([FromBody]NewUserDTO newUser)
         {
-            ServiceResponse<User> response = await _userService.Add(newUser);
+            ServiceResponse<UserDTO> response = await _userService.Add(newUser);
             return StatusCode(response.Code, response);
         }
        

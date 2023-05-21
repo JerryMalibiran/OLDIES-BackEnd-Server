@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
-    public class UserContext: DbContext
+    public class UserDbContext: DbContext
     {
 
-        public UserContext(DbContextOptions<UserContext> options): base(options)
+        public UserDbContext(DbContextOptions<UserDbContext> options): base(options)
         { 
         }
 

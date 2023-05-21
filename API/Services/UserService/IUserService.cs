@@ -5,8 +5,8 @@ namespace API.Services.UserService
 {
     public interface IUserService
     {
-        public Task<ServiceResponse<List<User>>> GetAll();
-        public Task<ServiceResponse<User>> GetByDiscordId(int id);
-        public Task<ServiceResponse<User>> Add(NewUserDTO newUser);
+        public Task<ServiceResponse<List<UserDTO>>> GetAll();
+        public Task<ServiceResponse<UserDTO>> GetByDiscordId(int id);
+        public Task<ServiceResponse<UserDTO>> Add(NewUserDTO newUser);
     }
 }
